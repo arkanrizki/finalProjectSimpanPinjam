@@ -17,7 +17,7 @@ class CreateKabupaten extends Migration
             $table->id();
             $table->integer('id_kabupaten')->unsigned();
             $table->integer('kode');
-            $table->integer('id_provinsi');
+            $table->foreignId('provinsi_id')->constrained('provinsi')->onDelete('cascade');
             $table->string('nama');
         });
     }

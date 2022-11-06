@@ -16,7 +16,7 @@ class CreateTagihan extends Migration
         Schema::create('tagihan', function (Blueprint $table) {
             $table->id();
             $table->integer('id_tagihan')->unsigned();
-            $table->integer('id_peminjaman');
+            $table->foreignId('peminjaman_id')->constrained('peminjaman')->onDelete('cascade');
             $table->date('tahun_bulan');
             $table->timestamps();
             $table->string('created_by');

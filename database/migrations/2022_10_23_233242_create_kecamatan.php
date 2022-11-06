@@ -17,7 +17,7 @@ class CreateKecamatan extends Migration
             $table->id();
             $table->integer('id_kecamatan')->unsigned();
             $table->integer('kode');
-            $table->integer('id_kabupaten');
+            $table->foreignId('kabupaten_id')->constrained('kabupaten')->onDelete('cascade');
             $table->string('nama');
         });
     }
