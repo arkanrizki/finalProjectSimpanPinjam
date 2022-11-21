@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\koperasiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/read/welcome');
 });
 
-Route::get('/index', function () {
-    return view('index');
-});
+Route::get('/home', [HomeController::class, 'index']);
+
+//tabel koperasi
+Route::get('/datakoperasi', [koperasiController::class, 'index']);
+Route::get('/koperasi', [koperasiController::class, 'create']);
+Route::post('/koperasi', [koperasiController::class, 'store']);
+Route::get('/datakoperasi/{koperasi}/edit', [koperasiController::class, 'edit']);
+Route::put('/datakoperasi/{koperasi}', [koperasiController::class, 'update']);
+Route::delete('/datakoperasi/{koperasi}', [koperasiController::class, 'destroy']);
