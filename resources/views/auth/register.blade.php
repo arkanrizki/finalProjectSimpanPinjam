@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.admin.auth')
 
 @section('content')
     <div class="container">
@@ -73,15 +73,15 @@
                             </div> --}}
 
                             <div class="form-group row">
-                                <label for="telpon"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('No Telpon') }}</label>
+                                <label for="telepon"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('No Telepon') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="telpon" type="tel"
-                                        class="form-control @error('telpon') is-invalid @enderror" name="no_telp"
-                                        value="{{ old('telpon') }}" required autocomplete="telpon" autofocus>
+                                    <input id="telepon" type="tel"
+                                        class="form-control @error('telepon') is-invalid @enderror" name="no_telp"
+                                        value="{{ old('telepon') }}" required autocomplete="telepon" autofocus>
 
-                                    @error('telpon')
+                                    @error('telepon')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

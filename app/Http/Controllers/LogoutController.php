@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class LogoutController extends Controller
 {
     public function index()
     {
-        return view('auth.login', [
-            'title' => 'Login',
-            'active' => 'login',
+        return view('auth.logout', [
+            'title' => 'Logout',
+            'active' => 'logout',
         ]);
     }
     public function authenticate(Request $request)
@@ -24,9 +24,9 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/admin-dashboard/koperasi');
+            return redirect()->intended('/admin-dashboard');
         }
 
-        return back()->with('loginError', 'Login failed!');
+        return back()->with('success', 'Logout success!');
     }
 }

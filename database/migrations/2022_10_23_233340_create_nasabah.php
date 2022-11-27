@@ -15,7 +15,6 @@ class CreateNasabah extends Migration
     {
         Schema::create('nasabah', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_nasabah')->unsigned();
             $table->string('nama');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('alamat');

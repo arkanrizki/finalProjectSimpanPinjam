@@ -11,8 +11,8 @@
             <h1>Tambahkan Data Koperasi</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('admin/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('admin/koperasi') }}">Koperasi</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin-dashboard/') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin-dashboard/koperasi') }}">Koperasi</a></li>
                     <li class="breadcrumb-item active">Create</li>
                 </ol>
             </nav>

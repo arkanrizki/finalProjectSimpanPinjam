@@ -2,8 +2,8 @@
  <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-        <span style="color: #B2FFFF"> &nbsp Koperasi Simpan Pinjam &nbsp</span>
+        <a class="navbar-brand" href="{{ url('/') }}" style="color:#8EDFFF ;font-size: 28px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+            Koperasi <span style="color: #B2FFFF">Simpan Pinjam</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->

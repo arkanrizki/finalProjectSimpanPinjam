@@ -40,7 +40,7 @@
                     @if (Route::has('login'))
                         <div>
                             @auth
-                                <a class="navbar-brand" href="{{ url('/home') }}" style="color:#8EDFFF ;font-size: 64px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; border-radius: 120px 90px 60px 30px/30px 60px 90px 120px; background-color: white">
+                                <a class="navbar-brand" href="{{ url('/admin-dashboard') }}" style="color:#8EDFFF ;font-size: 64px; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; border-radius: 120px 90px 60px 30px/30px 60px 90px 120px; background-color: white">
                                     &nbsp Koperasi <span style="color: #B2FFFF">Simpan Pinjam &nbsp</span>
                                 </a>
                                 <h3 class="flex justify-center"></h3>

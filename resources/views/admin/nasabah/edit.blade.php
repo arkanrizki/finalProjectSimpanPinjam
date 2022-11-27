@@ -8,30 +8,35 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Tambahkan Data Nasabah</h1>
+            <h1>Edit Data Nasabah</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('admin/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('admin/nasabah') }}">Nasabah</a></li>
-                    <li class="breadcrumb-item active">Create</li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin-dashboard/') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin-dashboard/nasabah') }}">Nasabah</a></li>
+                    <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <div class="container">
-            <form action="{{ url('admin-dashboard/nasabah/store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('admin-dashboard/nasabah/update/' . $nasabah->id) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="title">Nama</label>
-                    <input type="text" class="form-control" name="nama">
-                    <label for="title">Nomor Telepon</label>
-                    <input type="text" class="form-control" name="no_telp">
+                    <input type="text" class="form-control" name="nama" value="{{ old('nama', $nasabah->nama) }}">
                     <label for="title">Alamat</label>
-                    <input type="text" class="form-control" name="alamat">
+                    <input type="text" class="form-control" name="alamat"
+                        value="{{ old('alamat', $nasabah->alamat) }}">
+                        <label for="title">Nomor Telepon</label>
+                    <input type="text" class="form-control" name="no_telp"
+                        value="{{ old('no_telp', $nasabah->no_telp) }}">
+                    
                     <br>
                     <div class="row">
                         <div class="col-1">
-                            <button type="submit" class="btn btn-primary px-2">Submit</button>
+                            <button type="submit" class="btn btn-primary px-2">Edit</button>
                         </div>
                         <div class="col-1">
                             <a href="{{ url('admin-dashboard/nasabah') }}" class="btn btn-warning px-3">Back</a>

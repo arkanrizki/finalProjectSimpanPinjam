@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Nasabah extends Model
 {
     protected $table = 'nasabah';
-    protected $fillable = ['nama', 'alamat', 'no_telp', 'updated_at', 'created_at'];
+    protected $fillable = ['nama', 'user_id', 'alamat', 'no_telp', 'updated_at', 'created_at'];
     use HasFactory;
 
     public $timestamps = false;
@@ -26,5 +26,8 @@ class Nasabah extends Model
     public function koperasi()
     {
         return $this->hasOne(Koperasi::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

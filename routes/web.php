@@ -3,7 +3,10 @@
 use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminKoperasiController;
+use App\Http\Controllers\adminNasabahController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 
 
@@ -22,7 +25,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
 
 // admin
 route::get('/admin-dashboard', [adminController::class, 'index']);
@@ -35,6 +38,10 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
+//logout
+Route::get('/logout', [LogoutController::class, 'index']);
+Route::post('/logout', [LogoutController::class, 'authenticate'])->name('logout');
+
 //admin koperasi
 Route::get('/admin-dashboard/koperasi', [adminKoperasiController::class, 'index']);
 Route::get('/admin-dashboard/koperasi/create', [adminKoperasiController::class, 'create']);
@@ -42,3 +49,8 @@ Route::post('/admin-dashboard/koperasi/store', [adminKoperasiController::class, 
 Route::get('/admin-dashboard/koperasi/edit/{id}', [adminKoperasiController::class, 'edit']);
 Route::put('/admin-dashboard/koperasi/update/{id}', [adminKoperasiController::class, 'update']);
 Route::delete('/admin-dashboard/koperasi/delete/{id}', [adminKoperasiController::class, 'delete']);
+
+//admin nasabah
+Route::get('/admin-dashboard/nasabah', [adminNasabahController::class, 'index']);
+Route::get('/admin-dashboard/nasabah/create', [adminNasabahController::class, 'create']);
+Route::post('/admin-dashboard/nasabah/store', [adminNasabahController::class, 'store']);
