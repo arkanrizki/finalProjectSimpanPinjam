@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>koperasi Simpan Pinjam</title>
+    <title>Koperasi Simpan Pinjam</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -22,9 +22,9 @@
 
     <style>
         body{
-            background-image: url('https://ecs7.tokopedia.net/blog-tokopedia-com/uploads/2019/08/Blog_Inspirasi-Desain-Ruang-Kerja-Terbaik-untuk-Kerja-Lebih-Produktif.jpeg'); 
-            background-attachment: fixed; 
-            background-size: cover; 
+            background-image: url('https://ecs7.tokopedia.net/blog-tokopedia-com/uploads/2019/08/Blog_Inspirasi-Desain-Ruang-Kerja-Terbaik-untuk-Kerja-Lebih-Produktif.jpeg');
+            background-attachment: fixed;
+            background-size: cover;
             margin-top: 68px
         }
     </style>
