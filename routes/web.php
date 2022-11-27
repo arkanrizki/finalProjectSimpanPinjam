@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\koperasiController;
+use App\Http\Controllers\adminKoperasiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
@@ -19,10 +19,13 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', function () {
-    return view('/read/welcome');
+    return view('welcome');
 });
 
-Route::get('/home', [HomeController::class, 'index']);
+// Route::get('/home', [HomeController::class, 'index']);
+
+// admin
+route::get('/admin-dashboard', [adminController::class, 'index']);
 
 //login
 Route::get('/login', [LoginController::class, 'index']);
@@ -32,10 +35,10 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
-//tabel koperasi
-Route::get('/datakoperasi', [koperasiController::class, 'index']);
-Route::get('/koperasi', [koperasiController::class, 'create']);
-Route::post('/koperasi', [koperasiController::class, 'store']);
-Route::get('/datakoperasi/{koperasi}/edit', [koperasiController::class, 'edit']);
-Route::put('/datakoperasi/{koperasi}', [koperasiController::class, 'update']);
-Route::delete('/datakoperasi/{koperasi}', [koperasiController::class, 'destroy']);
+//admin koperasi
+Route::get('/admin-dashboard/koperasi', [adminKoperasiController::class, 'index']);
+Route::get('/admin-dashboard/koperasi/create', [adminKoperasiController::class, 'create']);
+Route::post('/admin-dashboard/koperasi/store', [adminKoperasiController::class, 'store']);
+Route::get('/admin-dashboard/koperasi/edit/{id}', [adminKoperasiController::class, 'edit']);
+Route::put('/admin-dashboard/koperasi/update/{id}', [adminKoperasiController::class, 'update']);
+Route::delete('/admin-dashboard/koperasi/delete/{id}', [adminKoperasiController::class, 'delete']);

@@ -15,7 +15,6 @@ class CreateKoperasi extends Migration
     {
         Schema::create('koperasi', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_koperasi');
             $table->string('nama');
             $table->string('alamat');
             $table->integer('npwp')->unsigned();
