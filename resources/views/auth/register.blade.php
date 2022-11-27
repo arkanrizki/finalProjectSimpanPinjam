@@ -78,7 +78,7 @@
 
                                 <div class="col-md-6">
                                     <input id="telpon" type="tel"
-                                        class="form-control @error('telpon') is-invalid @enderror" name="telpon"
+                                        class="form-control @error('telpon') is-invalid @enderror" name="no_telp"
                                         value="{{ old('telpon') }}" required autocomplete="telpon" autofocus>
 
                                     @error('telpon')
