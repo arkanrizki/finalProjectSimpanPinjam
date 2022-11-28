@@ -21,8 +21,8 @@ class adminKoperasiController extends Controller
     {
         $koperasi = DB::table('koperasi')
             ->get();
-            // dd($koperasi[1]->id);
-            // dd($koperasi);
+        // dd($koperasi[1]->id);
+        // dd($koperasi);
         return view(
             'admin.koperasi.index',
             [
@@ -48,7 +48,7 @@ class adminKoperasiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
         $koperasi = DB::table('koperasi')->insert([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
@@ -72,7 +72,7 @@ class adminKoperasiController extends Controller
                 ]);
         }
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -106,7 +106,7 @@ class adminKoperasiController extends Controller
         if ($koperasi) {
             return redirect('admin-dashboard/koperasi')
                 ->with([
-                    'success' => 'Post has been updated successfully'
+                    'success' => 'Koperasi has been updated successfully'
                 ]);
         } else {
             return redirect('admin-dashboard/koperasi')
@@ -133,7 +133,7 @@ class adminKoperasiController extends Controller
         if ($koperasi) {
             return redirect('admin-dashboard/koperasi')
                 ->with([
-                    'success' => 'Post has been deleted successfully'
+                    'success' => 'Koperasi has been deleted successfully'
                 ]);
         } else {
             return redirect('admin-dashboard/koperasi')

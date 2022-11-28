@@ -4,6 +4,7 @@ use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminKoperasiController;
 use App\Http\Controllers\adminNasabahController;
+use App\Http\Controllers\adminPekerjaanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -54,3 +55,11 @@ Route::delete('/admin-dashboard/koperasi/delete/{id}', [adminKoperasiController:
 Route::get('/admin-dashboard/nasabah', [adminNasabahController::class, 'index']);
 Route::get('/admin-dashboard/nasabah/create', [adminNasabahController::class, 'create']);
 Route::post('/admin-dashboard/nasabah/store', [adminNasabahController::class, 'store']);
+
+//admin pekerjaan
+Route::get('/admin-dashboard/pekerjaan', [adminPekerjaanController::class, 'index']);
+Route::get('/admin-dashboard/pekerjaan/create', [adminPekerjaanController::class, 'create']);
+Route::post('/admin-dashboard/pekerjaan/store', [adminPekerjaanController::class, 'store']);
+Route::get('/admin-dashboard/pekerjaan/edit/{id}', [adminPekerjaanController::class, 'edit']);
+Route::put('/admin-dashboard/pekerjaan/update/{id}', [adminPekerjaanController::class, 'update']);
+Route::delete('/admin-dashboard/pekerjaan/delete/{id}', [adminPekerjaanController::class, 'delete']);

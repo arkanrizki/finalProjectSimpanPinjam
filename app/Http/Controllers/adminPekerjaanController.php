@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\nasabah;
 use Illuminate\Http\Request;
+use App\Models\Pekerjaan;
 use Illuminate\Support\Facades\DB;
 
-class adminNasabahController extends Controller
+class adminPekerjaanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +15,12 @@ class adminNasabahController extends Controller
      */
     public function index()
     {
-        $nasabah = DB::table('nasabah')
-            ->get();
-        // dd($nasabah[1]->id);
-        // dd($nasabah);
+        $pekerjaan = DB::table('pekerjaan')->get();
+
         return view(
-            'admin.nasabah.index',
+            'admin.pekerjaan.index',
             [
-                'nasabah' => $nasabah
+                'pekerjaan' => $pekerjaan
             ]
         );
     }
@@ -34,7 +32,7 @@ class adminNasabahController extends Controller
      */
     public function create()
     {
-        return view('admin.nasabah.create');
+        return view('admin.pekerjaan.create');
     }
 
     /**
@@ -45,26 +43,36 @@ class adminNasabahController extends Controller
      */
     public function store(Request $request)
     {
-        $nasabah = DB::table('nasabah')->insert([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'no_telp' => $request->no_telp,
-
+        $request->validate([
+            'nama' => 'required|unique:pekerjaan,nama'
         ]);
-        if ($nasabah) {
-            return redirect('admin-dashboard/nasabah')
-                ->with([
-                    'success' => 'Nasabah has been added successfully'
-                ]);
+
+        $pekerjaan = DB::table('pekerjaan')->insert([
+            'nama' => $request->nama,
+        ]);
+        if ($pekerjaan) {
+            return redirect('admin-dashboard/pekerjaan')->with([
+                'success' => "Pekerjaan has been added successfully"
+            ]);
         } else {
-            return redirect('admin-dashboard/nasabah')
-                ->back()
-                ->withInput()
+            return redirect('admin-dashboard/pekerjaan')
+                ->back()->withInput()
                 ->with([
-                    'error' => 'Some problem has occured, please try again'
+                    'error' => "Some problem has occured, please try again"
                 ]);
         }
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -74,8 +82,8 @@ class adminNasabahController extends Controller
      */
     public function edit($id)
     {
-        $nasabah = nasabah::findOrFail($id);
-        return view('admin.nasabah.edit', compact('nasabah'));
+        $pekerjaan = pekerjaan::findOrFail($id);
+        return view('admin.pekerjaan.edit', compact('pekerjaan'));
     }
 
     /**
@@ -87,19 +95,17 @@ class adminNasabahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $nasabah = nasabah::findOrFail($id);
-        $nasabah->update([
+        $pekerjaan = pekerjaan::findOrFail($id);
+        $pekerjaan->update([
             'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'no_telp' => $request->no_telp,
         ]);
-        if ($nasabah) {
-            return redirect('admin-dashboard/nasabah')
+        if ($pekerjaan) {
+            return redirect('admin-dashboard/pekerjaan')
                 ->with([
-                    'success' => 'Nasabah has been updated successfully'
+                    'success' => 'Pekerjaan has been updated successfully'
                 ]);
         } else {
-            return redirect('admin-dashboard/nasabah')
+            return redirect('admin-dashboard/pekerjaan')
                 ->back()
                 ->withInput()
                 ->with([
@@ -116,16 +122,16 @@ class adminNasabahController extends Controller
      */
     public function delete($id)
     {
-        $nasabah = nasabah::findOrFail($id);
-        $nasabah->delete();
+        $pekerjaan = pekerjaan::findOrFail($id);
+        $pekerjaan->delete();
 
-        if ($nasabah) {
-            return redirect('admin-dashboard/nasabah')
+        if ($pekerjaan) {
+            return redirect('admin-dashboard/pekerjaan')
                 ->with([
-                    'success' => 'Nasabah has been deleted successfully'
+                    'success' => 'Pekerjaan has been deleted successfully'
                 ]);
         } else {
-            return redirect('admin-dashboard/nasabah')
+            return redirect('admin-dashboard/pekerjaan')
                 ->with([
                     'error' => 'Some problem has occurred, please try again'
                 ]);
