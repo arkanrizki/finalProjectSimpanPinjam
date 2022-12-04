@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminKoperasiController;
 use App\Http\Controllers\adminNasabahController;
 use App\Http\Controllers\adminPekerjaanController;
+use App\Http\Controllers\adminProvinsiController;
+use App\Http\Controllers\adminKabupatenController;
+use App\Http\Controllers\adminKecamatanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\orderLanggananController;
@@ -80,3 +83,12 @@ Route::post('/admin-dashboard/pekerjaan/store', [adminPekerjaanController::class
 Route::get('/admin-dashboard/pekerjaan/edit/{id}', [adminPekerjaanController::class, 'edit']);
 Route::put('/admin-dashboard/pekerjaan/update/{id}', [adminPekerjaanController::class, 'update']);
 Route::delete('/admin-dashboard/pekerjaan/delete/{id}', [adminPekerjaanController::class, 'delete']);
+
+//admin provinsi
+Route::get('/admin-dashboard/provinsi', [adminProvinsiController::class, 'index']);
+
+//admin kabupaten
+Route::get('/admin-dashboard/kabupaten', [adminKabupatenController::class, 'index']);
+
+//admin kecamatan
+Route::get('/admin-dashboard/kecamatan', [adminKecamatanController::class, 'index']);
