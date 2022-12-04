@@ -15,7 +15,6 @@ class CreateRekening extends Migration
     {
         Schema::create('rekening', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_rekening')->unsigned();
             $table->foreignId('nasabah_id')->constrained('nasabah')->onDelete('cascade');
             $table->integer('no_rekening');
             $table->timestamps();

@@ -14,18 +14,12 @@ class LogoutController extends Controller
             'active' => 'logout',
         ]);
     }
-    public function authenticate(Request $request)
+
+    public function logout(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email:dns',
-            'password' => 'required',
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/admin-dashboard');
-        }
+        Auth::logout();
+        $request->session()->invalidate;
+        $request->session()->regenerateToken();
 
         return back()->with('success', 'Logout success!');
     }

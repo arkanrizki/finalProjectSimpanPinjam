@@ -15,7 +15,6 @@ class CreateTabungan extends Migration
     {
         Schema::create('tabungan', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_tabungan')->unsigned();
             $table->foreignId('rekening_id')->constrained('rekening')->onDelete('cascade');
             $table->string('debet');
             $table->string('kredit');

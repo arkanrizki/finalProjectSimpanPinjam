@@ -2,81 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\orderLangganan;
+use App\Models\riwayatReorder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class orderLanggananController extends Controller
+class riwayatReorderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $order = DB::table('order_langganan')
+        $riwayat = DB::table('riwayat_reorder')
             ->get();
         // dd($koperasi[1]->id);
         // dd($koperasi);
         return view(
-            'admin.orderLangganan.index',
+            'admin.riwayatReorder.index',
             [
-                'order' => $order
+                'riwayat' => $riwayat
             ]
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $nama_koperasi = DB::table('koperasi')
+        $order = DB::table('order_langganan')
             ->get();
 
-        return view('admin.orderLangganan.create', [
-            'nama_koperasi' => $nama_koperasi
+        return view('admin.riwayatReorder.create', [
+            'order_id' => $order
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $koperasi = DB::table('koperasi')
-            ->where('nama', '=', $request->nama_koperasi)
+        $order = DB::table('order_langganan')
+            ->where('id', '=', $request->order_id)
             ->get();
-        // dd($koperasi[0]);
+
+        // dd($order);
         // dd(Auth::user());
-        $order = DB::table('order_langganan')->insert([
-            'nama_koperasi' => $koperasi[0]->nama,
-            'user_id' => Auth::user()->id,
-            'alamat' => $koperasi[0]->alamat,
-            'npwp' => $koperasi[0]->npwp,
-            'nama_pimpinan' => $koperasi[0]->nama_pimpinan,
-            'nama_bendahara' => $koperasi[0]->nama_bendahara,
-            'no_telp' => $koperasi[0]->no_telp,
-            'email' => $koperasi[0]->email,
-            'status_approval' => $request->status_approval,
-            'updated_at' => $request->updated_at
+        $riwayat = DB::table('riwayat_reorder')->insert([
+            'koperasi_id' => $order[0]->koperasi_id,
+            'tgl_order' => $request->tgl_order,
+            'order_id' => $order[0]->order_id,
+            'status_order' => $request->status_order,
+            'tgl_mulai_langganan' => $request->tgl_mulai_langganan,
+            'tgl_berakhir_langganan' => $request->tgl_berakhir_langganan,
 
         ]);
-        
-        if ($order) {
-            return redirect('admin-dashboard/order-langganan')
+
+        if ($riwayat) {
+            return redirect('admin-dashboard/riwayat-reorder')
                 ->with([
                     'success' => 'Post has been added successfully'
                 ]);
         } else {
-            return redirect('admin-dashboard/order-langganan')
+            return redirect('admin-dashboard/riwayat-reorder')
                 ->back()
                 ->withInput()
                 ->with([
@@ -85,15 +66,9 @@ class orderLanggananController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $order = orderLangganan::findOrFail($id);
+        $order = riwayatReorder::findOrFail($id);
         // dd($order);
         return view('admin.orderLangganan.edit', compact('order'));
     }
@@ -107,7 +82,7 @@ class orderLanggananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order = orderLangganan::findOrFail($id);
+        $order = riwayatReorder::findOrFail($id);
         
         // dd($order);
         $order = $order->update([
@@ -119,8 +94,8 @@ class orderLanggananController extends Controller
             'nama_bendahara' => $order->nama_bendahara,
             'no_telp' => $order->no_telp,
             'email' => $order->email,
-            'status_approval' => $request->status_approval,
-            'updated_at' => $request->updated_at
+            'status_approval' => $request->status_approval
+
 
         ]);
         // dd($order);  
@@ -148,7 +123,7 @@ class orderLanggananController extends Controller
      */
     public function delete($id)
     {
-        $order = orderLangganan::findOrFail($id);
+        $order = riwayatReorder::findOrFail($id);
         $order->delete();
 
         if ($order) {
@@ -163,4 +138,5 @@ class orderLanggananController extends Controller
                 ]);
         }
     }
+
 }

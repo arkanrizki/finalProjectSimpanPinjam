@@ -94,7 +94,8 @@ class adminKoperasiController extends Controller
     public function update(Request $request, $id)
     {
         $koperasi = koperasi::findOrFail($id);
-        $koperasi->update([
+        
+        $koperasi = $koperasi->update([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'npwp' => $request->npwp,
@@ -103,6 +104,7 @@ class adminKoperasiController extends Controller
             'no_telp' => $request->no_telp,
             'email' => $request->email,
         ]);
+        // dd($coba);
         if ($koperasi) {
             return redirect('admin-dashboard/koperasi')
                 ->with([

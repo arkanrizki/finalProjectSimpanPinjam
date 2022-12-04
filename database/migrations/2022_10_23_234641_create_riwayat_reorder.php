@@ -15,7 +15,6 @@ class CreateRiwayatReorder extends Migration
     {
         Schema::create('riwayat_reorder', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_riwayat_reorder')->unsigned();
             $table->foreignId('koperasi_id')->constrained('koperasi')->onDelete('cascade');
             $table->date('tgl_order');
             $table->foreignId('order_id')->constrained('order_langganan')->onDelete('cascade');

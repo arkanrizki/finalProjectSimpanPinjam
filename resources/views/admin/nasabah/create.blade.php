@@ -11,8 +11,8 @@
             <h1>Tambahkan Data Nasabah</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('admin/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('admin/nasabah') }}">Nasabah</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin-dashboard/') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin-dashboard/nasabah') }}">Nasabah</a></li>
                     <li class="breadcrumb-item active">Create</li>
                 </ol>
             </nav>
@@ -28,6 +28,19 @@
                     <input type="text" class="form-control" name="no_telp">
                     <label for="title">Alamat</label>
                     <input type="text" class="form-control" name="alamat">
+                    <label for="title">Pekerjaan</label>
+                    <select name="pekerjaan_id" id="">
+                        @foreach($pekerjaan as $d)
+                        <option value="{{ $d->id }}">mandor</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <label for="title">Kecamatan</label>
+                    <select name="kecamatan_id" id="">
+                        @foreach($kecamatan as $d)
+                        <option value="{{ $d->id }}">jebres</option>
+                        @endforeach
+                    </select>
                     <br>
                     <div class="row">
                         <div class="col-1">

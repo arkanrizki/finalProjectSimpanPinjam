@@ -15,7 +15,6 @@ class CreatePembayaranTagihan extends Migration
     {
         Schema::create('pembayaran_tagihan', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pembayaran_tagihan')->unsigned();
             $table->foreignId('tagihan_id')->constrained('tagihan')->onDelete('cascade');
             $table->string('jml_bayar');
             $table->date('tgl_bayar');

@@ -15,7 +15,6 @@ class CreateProvinsi extends Migration
     {
         Schema::create('provinsi', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_provinsi')->unsigned();
             $table->integer('kode');
             $table->string('nama');
         });

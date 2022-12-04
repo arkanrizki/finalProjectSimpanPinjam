@@ -15,7 +15,6 @@ class CreatePeminjaman extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_peminjaman')->unsigned();
             $table->foreignId('rekening_id')->constrained('rekening')->onDelete('cascade');
             $table->string('jml_pinjam');
             $table->string('debet');

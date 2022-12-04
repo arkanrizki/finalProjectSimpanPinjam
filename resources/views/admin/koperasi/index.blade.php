@@ -51,7 +51,7 @@
                                 <td>{{ $k->npwp }}</td>
                                 <td>{{ $k->nama_pimpinan }}</td>
                                 <td>{{ $k->nama_bendahara }}</td>
-                                <td>{{ $k->no_telp }}</td>
+                                <td>+62{{ $k->no_telp }}</td>
                                 <td>{{ $k->email }}</td>
                                 <td><a class="btn btn-warning"
                                         href="{{ url('/admin-dashboard/koperasi/edit/' . $k->id) }}">Edit</a>

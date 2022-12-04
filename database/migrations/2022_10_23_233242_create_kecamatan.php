@@ -15,7 +15,6 @@ class CreateKecamatan extends Migration
     {
         Schema::create('kecamatan', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_kecamatan')->unsigned();
             $table->integer('kode');
             $table->foreignId('kabupaten_id')->constrained('kabupaten')->onDelete('cascade');
             $table->string('nama');

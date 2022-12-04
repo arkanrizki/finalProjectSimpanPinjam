@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\nasabah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class adminNasabahController extends Controller
@@ -17,8 +18,8 @@ class adminNasabahController extends Controller
     {
         $nasabah = DB::table('nasabah')
             ->get();
-            // dd($nasabah[1]->id);
-            // dd($nasabah);
+        // dd($nasabah[1]->id);
+        // dd($nasabah);
         return view(
             'admin.nasabah.index',
             [
@@ -32,9 +33,15 @@ class adminNasabahController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('admin.nasabah.create');
+
+        // $pekerjaan = DB::table('pekerjaan')
+        //     ->get();
+        // $kecamatan = DB::table('kecamatan')
+        //     ->get();
+        // return view('admin.nasabah.create', ['pekerjaan' => $pekerjaan, 'kecamatan' => $kecamatan]);
     }
 
     /**
@@ -49,7 +56,11 @@ class adminNasabahController extends Controller
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_telp' => $request->no_telp,
-            
+            'user_id' => Auth::user()->id,
+            'pekerjaan_id' => $request->pekerjaan_id,
+            'kecamatan_id' => $request->kecamatan_id,
+            'koperasi_id' => $request->koperasi_id
+
         ]);
         if ($nasabah) {
             return redirect('admin-dashboard/nasabah')
