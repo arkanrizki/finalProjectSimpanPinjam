@@ -56,16 +56,12 @@ class adminNasabahController extends Controller
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_telp' => $request->no_telp,
-            'user_id' => Auth::user()->id,
-            'pekerjaan_id' => $request->pekerjaan_id,
-            'kecamatan_id' => $request->kecamatan_id,
-            'koperasi_id' => $request->koperasi_id
-
+            
         ]);
         if ($nasabah) {
             return redirect('admin-dashboard/nasabah')
                 ->with([
-                    'success' => 'Post has been added successfully'
+                    'success' => 'Nasabah has been added successfully'
                 ]);
         } else {
             return redirect('admin-dashboard/nasabah')
@@ -107,7 +103,7 @@ class adminNasabahController extends Controller
         if ($nasabah) {
             return redirect('admin-dashboard/nasabah')
                 ->with([
-                    'success' => 'Post has been updated successfully'
+                    'success' => 'Nasabah has been updated successfully'
                 ]);
         } else {
             return redirect('admin-dashboard/nasabah')
@@ -133,7 +129,7 @@ class adminNasabahController extends Controller
         if ($nasabah) {
             return redirect('admin-dashboard/nasabah')
                 ->with([
-                    'success' => 'Post has been deleted successfully'
+                    'success' => 'Nasabah has been deleted successfully'
                 ]);
         } else {
             return redirect('admin-dashboard/nasabah')

@@ -4,6 +4,7 @@ use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminKoperasiController;
 use App\Http\Controllers\adminNasabahController;
+use App\Http\Controllers\adminPekerjaanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\orderLanggananController;
@@ -71,3 +72,11 @@ Route::post('/admin-dashboard/riwayat-reorder/store', [riwayatReorderController:
 Route::get('/admin-dashboard/riwayat-reorder/edit/{id}', [riwayatReorderController::class, 'edit']);
 Route::put('/admin-dashboard/riwayat-reorder/update/{id}', [riwayatReorderController::class, 'update']);
 Route::delete('/admin-dashboard/riwayat-reorder/delete/{id}', [riwayatReorderController::class, 'delete']);
+
+//admin pekerjaan
+Route::get('/admin-dashboard/pekerjaan', [adminPekerjaanController::class, 'index']);
+Route::get('/admin-dashboard/pekerjaan/create', [adminPekerjaanController::class, 'create']);
+Route::post('/admin-dashboard/pekerjaan/store', [adminPekerjaanController::class, 'store']);
+Route::get('/admin-dashboard/pekerjaan/edit/{id}', [adminPekerjaanController::class, 'edit']);
+Route::put('/admin-dashboard/pekerjaan/update/{id}', [adminPekerjaanController::class, 'update']);
+Route::delete('/admin-dashboard/pekerjaan/delete/{id}', [adminPekerjaanController::class, 'delete']);
