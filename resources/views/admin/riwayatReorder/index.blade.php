@@ -8,11 +8,11 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Dashboard</h1>
+            <h1>Riwayat-Reorder</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">Riwayat-Reorder</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -42,7 +42,6 @@
                         @foreach ($riwayat as $r)
                             <tr>
                                 <th scope="row">{{ $r->id }}</th>
-                                <td>{{ $r->id }}</td>
                                 <td>{{ $r->koperasi_id }}</td>
                                 <td>{{ $r->tgl_order }}</td>
                                 <td>{{ $r->order_id }}</td>
@@ -52,7 +51,8 @@
                                 <td><a class="btn btn-warning"
                                         href="{{ url('/admin-dashboard/riwayat-reorder/edit/' . $r->id) }}">Edit</a>
                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                        action="{{ url('/admin-dashboard/riwayat-reorder/delete/' . $r->id) }}" method="POST">
+                                        action="{{ url('/admin-dashboard/riwayat-reorder/delete/' . $r->id) }}"
+                                        method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"class="btn btn-danger">Delete</button>

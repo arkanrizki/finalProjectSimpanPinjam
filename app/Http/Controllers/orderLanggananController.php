@@ -6,6 +6,7 @@ use App\Models\orderLangganan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class orderLanggananController extends Controller
 {
@@ -54,6 +55,7 @@ class orderLanggananController extends Controller
         $koperasi = DB::table('koperasi')
             ->where('nama', '=', $request->nama_koperasi)
             ->get();
+        $now = Carbon::now();
         // dd($koperasi[0]);
         // dd(Auth::user());
         $order = DB::table('order_langganan')->insert([
@@ -66,10 +68,9 @@ class orderLanggananController extends Controller
             'no_telp' => $koperasi[0]->no_telp,
             'email' => $koperasi[0]->email,
             'status_approval' => $request->status_approval,
-            'updated_at' => $request->updated_at
-
+            'created_at' => $now,
         ]);
-        
+
         if ($order) {
             return redirect('admin-dashboard/order-langganan')
                 ->with([
@@ -108,7 +109,7 @@ class orderLanggananController extends Controller
     public function update(Request $request, $id)
     {
         $order = orderLangganan::findOrFail($id);
-        
+
         // dd($order);
         $order = $order->update([
             'nama_koperasi' => $order->nama_koperasi,
@@ -120,10 +121,9 @@ class orderLanggananController extends Controller
             'no_telp' => $order->no_telp,
             'email' => $order->email,
             'status_approval' => $request->status_approval,
-            'updated_at' => $request->updated_at
-
+            'updated_at' => now(),
         ]);
-        // dd($order);  
+        // dd($order);
         if ($order) {
             return redirect('admin-dashboard/order-langganan')
                 ->with([

@@ -12,7 +12,8 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('admin-dashboard/') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('admin-dashboard/riwayat-reorder') }}">Riwayat Reorder</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin-dashboard/riwayat-reorder') }}">Riwayat Reorder</a>
+                    </li>
                     <li class="breadcrumb-item active">Create</li>
                 </ol>
             </nav>
@@ -23,23 +24,34 @@
                 @csrf
                 <div class="form-group">
                     <label for="title">Order ID</label><br>
-                    <select name="order_id" id="" disabled>
-                        @foreach($order_id as $o)
+                    <select name="order_id" id="">
+                        @foreach ($order_id as $o)
                             <option value="{{ $o->id }}">{{ $o->id }}</option>
                         @endforeach
                     </select>
                     <br>
                     <label for="title">Status Order</label><br>
                     <select name="status_order" id="">
-                            <option>Order</option>
-                            <option>Bayar</option>
-                            <option>Batal</option>
+                        <option>Order</option>
+                        <option>Bayar</option>
+                        <option>Batal</option>
                     </select>
                     <br><br>
-                    
+
                     <div class="row">
                         <div class="col-1">
                             <button type="submit" class="btn btn-primary px-2">Submit</button>
+                            <button id="pay-button" type="button">Pay!</button>
+                            <script type="text/javascript">
+                                // For example trigger on button clicked, or any time you need
+                                var payButton = document.getElementById('pay-button');
+                                console.log('{{ $snap_token }}');
+                                payButton.addEventListener('click', function() {
+                                    // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+                                    window.snap.pay('{{ $snap_token }}');
+                                    // customer will be redirected after completing payment pop-up
+                                });
+                            </script>
                         </div>
                         <div class="col-1">
                             <a href="{{ url('admin-dashboard/riwayat-reorder') }}" class="btn btn-warning px-3">Back</a>

@@ -12,7 +12,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\orderLanggananController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\riwayatReorder;
 use App\Http\Controllers\riwayatReorderController;
 
 /*
@@ -71,6 +70,7 @@ Route::delete('/admin-dashboard/order-langganan/delete/{id}', [orderLanggananCon
 // Riwayat Reorder
 Route::get('/admin-dashboard/riwayat-reorder', [riwayatReorderController::class, 'index']);
 Route::get('/admin-dashboard/riwayat-reorder/create', [riwayatReorderController::class, 'create']);
+Route::get('/admin-dashboard/riwayat-reorder/payment', [riwayatReorderController::class, 'payment']);
 Route::post('/admin-dashboard/riwayat-reorder/store', [riwayatReorderController::class, 'store']);
 Route::get('/admin-dashboard/riwayat-reorder/edit/{id}', [riwayatReorderController::class, 'edit']);
 Route::put('/admin-dashboard/riwayat-reorder/update/{id}', [riwayatReorderController::class, 'update']);

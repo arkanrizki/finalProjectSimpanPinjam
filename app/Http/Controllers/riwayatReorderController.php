@@ -6,6 +6,54 @@ use App\Models\riwayatReorder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+
+function payment()
+{
+    // Set your Merchant Server Key
+    \Midtrans\Config::$serverKey = 'SB-Mid-server-aKHeiC2d1LrBU3PHtuEeTqET';
+    // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+    \Midtrans\Config::$isProduction = false;
+    // Set sanitization on (default)
+    \Midtrans\Config::$isSanitized = true;
+    // Set 3DS transaction for credit card to true
+    \Midtrans\Config::$is3ds = true;
+
+    // $id = DB::table('riwayat_reorder')
+    //     ->pluck('order_id');
+
+    $koperasi = DB::table('order_langganan')
+        ->where('status_approval', '=', 'Diterima')
+        ->get();
+    // dd($koperasi);
+
+    $params = array(
+        'transaction_details' => array(
+            'order_id' => $koperasi[0]->id,
+            'gross_amount' => 50000,
+        ),
+        'customer_details' => array(
+            'first_name' => $koperasi[0]->nama_koperasi,
+            'last_name' => '',
+            'email' => $koperasi[0]->email,
+            'phone' => $koperasi[0]->no_telp,
+            'billing_address' => array(
+                'first_name' => $koperasi[0]->nama_bendahara,
+                'last_name' => '',
+                'email' => $koperasi[0]->email,
+                'phone' => $koperasi[0]->no_telp,
+                'address' => $koperasi[0]->alamat,
+                'city' => '',
+                'postal_code' => '12190',
+                'country_code' => 'IDN'
+            ),
+        ),
+    );
+    // dd($params);
+    $snapToken = \Midtrans\Snap::getSnapToken($params);
+    // dd($snapToken);
+    return $snapToken;
+}
 
 class riwayatReorderController extends Controller
 {
@@ -27,28 +75,43 @@ class riwayatReorderController extends Controller
     {
         $order = DB::table('order_langganan')
             ->get();
+        // dd($order);
 
         return view('admin.riwayatReorder.create', [
-            'order_id' => $order
+            'order_id' => $order,
+            'snap_token' => payment(),
         ]);
     }
 
     public function store(Request $request)
     {
-        $order = DB::table('order_langganan')
+        $temp1 = DB::table('order_langganan')
             ->where('id', '=', $request->order_id)
-            ->get();
+            ->select('id')
+            ->first()->id;
+        $order = intval($temp1);
+        $nama = DB::table('order_langganan')
+            ->pluck('nama_koperasi');
+        $temp2 = DB::table('koperasi')
+            ->where('nama', '=', $nama)
+            ->select('id')
+            ->first()->id;
+        $id = intval($temp2);
+        $tgl = DB::table('order_langganan')
+            ->select('created_at')
+            ->first()->created_at;
+        $now = Carbon::now();
+        $next_month = Carbon::now()->addMonth(1);
 
         // dd($order);
         // dd(Auth::user());
         $riwayat = DB::table('riwayat_reorder')->insert([
-            'koperasi_id' => $order[0]->koperasi_id,
-            'tgl_order' => $request->tgl_order,
-            'order_id' => $order[0]->order_id,
+            'koperasi_id' => $id,
+            'tgl_order' => $tgl,
+            'order_id' => $order,
             'status_order' => $request->status_order,
-            'tgl_mulai_langganan' => $request->tgl_mulai_langganan,
-            'tgl_berakhir_langganan' => $request->tgl_berakhir_langganan,
-
+            'tgl_mulai_langganan' => $now,
+            'tgl_berakhir_langganan' => $next_month,
         ]);
 
         if ($riwayat) {
@@ -83,7 +146,7 @@ class riwayatReorderController extends Controller
     public function update(Request $request, $id)
     {
         $order = riwayatReorder::findOrFail($id);
-        
+
         // dd($order);
         $order = $order->update([
             'nama_koperasi' => $order->nama_koperasi,
@@ -95,10 +158,8 @@ class riwayatReorderController extends Controller
             'no_telp' => $order->no_telp,
             'email' => $order->email,
             'status_approval' => $request->status_approval
-
-
         ]);
-        // dd($order);  
+        // dd($order);
         if ($order) {
             return redirect('admin-dashboard/order-langganan')
                 ->with([
@@ -138,5 +199,4 @@ class riwayatReorderController extends Controller
                 ]);
         }
     }
-
 }

@@ -18,8 +18,6 @@ class CreateRekening extends Migration
             $table->foreignId('nasabah_id')->constrained('nasabah')->onDelete('cascade');
             $table->integer('no_rekening');
             $table->timestamps();
-            $table->string('created_by');
-            $table->string('updated_by');
         });
     }
 
