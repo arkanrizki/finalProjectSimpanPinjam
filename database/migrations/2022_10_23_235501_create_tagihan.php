@@ -18,8 +18,6 @@ class CreateTagihan extends Migration
             $table->foreignId('peminjaman_id')->constrained('peminjaman')->onDelete('cascade');
             $table->date('tahun_bulan');
             $table->timestamps();
-            $table->string('created_by');
-            $table->string('updated_by');
         });
     }
 

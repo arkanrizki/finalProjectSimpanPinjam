@@ -48,6 +48,9 @@
     <!-- Template Main JS File -->
     <script src="<?= asset('admin/assets/js/main.js') ?>"></script>
 
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="SB-Mid-client-5aO6Cda0_xp_UQez"></script>
+
 </body>
 
 </html>

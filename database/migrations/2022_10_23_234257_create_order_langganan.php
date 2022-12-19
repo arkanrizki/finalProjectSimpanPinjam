@@ -24,6 +24,7 @@ class CreateOrderLangganan extends Migration
             $table->integer('no_telp');
             $table->string('email');
             $table->string('status_approval');
+            $table->timestamps();
         });
     }
 

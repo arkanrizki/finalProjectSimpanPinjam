@@ -20,7 +20,7 @@ class CreateNasabah extends Migration
             $table->string('alamat');
             $table->integer('no_telp');
             $table->foreignId('pekerjaan_id')->constrained('pekerjaan')->onDelete('cascade');
-            $table->foreignId('kecamatan_id')->constrained('kecamatan')->onDelete('cascade');
+            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
             $table->foreignId('koperasi_id')->constrained('koperasi')->onDelete('cascade');
         });
     }

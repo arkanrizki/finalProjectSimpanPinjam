@@ -41,7 +41,7 @@
                             <th scope="col">No Telepon</th>
                             <th scope="col">Email</th>
                             <th scope="col">Status Approval</th>
-                            <th scope="col">Updated At</th>
+                            {{-- <th scope="col">Updated At</th> --}}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -58,11 +58,12 @@
                                 <td>+62{{ $o->no_telp }}</td>
                                 <td>{{ $o->email }}</td>
                                 <td>{{ $o->status_approval }}</td>
-                                <td>{{ $o->updated_at }}</td>
+                                {{-- <td>{{ $o->updated_at }}</td> --}}
                                 <td><a class="btn btn-warning"
                                         href="{{ url('/admin-dashboard/order-langganan/edit/' . $o->id) }}">Edit</a>
                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                        action="{{ url('/admin-dashboard/order-langganan/delete/' . $o->id) }}" method="POST">
+                                        action="{{ url('/admin-dashboard/order-langganan/delete/' . $o->id) }}"
+                                        method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"class="btn btn-danger">Delete</button>

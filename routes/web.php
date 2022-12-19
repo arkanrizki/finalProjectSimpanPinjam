@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminKoperasiController;
 use App\Http\Controllers\adminNasabahController;
 use App\Http\Controllers\adminPekerjaanController;
+use App\Http\Controllers\adminProvinsiController;
+use App\Http\Controllers\adminKabupatenController;
+use App\Http\Controllers\adminKecamatanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\orderLanggananController;
@@ -68,6 +71,7 @@ Route::delete('/admin-dashboard/order-langganan/delete/{id}', [orderLanggananCon
 // Riwayat Reorder
 Route::get('/admin-dashboard/riwayat-reorder', [riwayatReorderController::class, 'index']);
 Route::get('/admin-dashboard/riwayat-reorder/create', [riwayatReorderController::class, 'create']);
+Route::get('/admin-dashboard/riwayat-reorder/payment', [riwayatReorderController::class, 'payment']);
 Route::post('/admin-dashboard/riwayat-reorder/store', [riwayatReorderController::class, 'store']);
 Route::get('/admin-dashboard/riwayat-reorder/edit/{id}', [riwayatReorderController::class, 'edit']);
 Route::put('/admin-dashboard/riwayat-reorder/update/{id}', [riwayatReorderController::class, 'update']);
@@ -96,3 +100,12 @@ Route::post('/admin-dashboard/rekening/store', [rekeningController::class, 'stor
 Route::get('/admin-dashboard/rekening/edit/{id}', [rekeningController::class, 'edit']);
 Route::put('/admin-dashboard/rekening/update/{id}', [rekeningController::class, 'update']);
 Route::delete('/admin-dashboard/rekening/delete/{id}', [rekeningController::class, 'delete']);
+
+//admin provinsi
+Route::get('/admin-dashboard/provinsi', [adminProvinsiController::class, 'index']);
+
+//admin kabupaten
+Route::get('/admin-dashboard/kabupaten', [adminKabupatenController::class, 'index']);
+
+//admin kecamatan
+Route::get('/admin-dashboard/kecamatan', [adminKecamatanController::class, 'index']);
