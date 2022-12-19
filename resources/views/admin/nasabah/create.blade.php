@@ -28,20 +28,31 @@
                     <input type="text" class="form-control" name="no_telp">
                     <label for="title">Alamat</label>
                     <input type="text" class="form-control" name="alamat">
-                    <label for="title">Pekerjaan</label>
-                    <select name="pekerjaan_id" id="">
-                        @foreach($pekerjaan as $d)
-                        <option value="{{ $d->id }}">mandor</option>
-                        @endforeach
-                    </select>
-                    <br>
                     <label for="title">Kecamatan</label>
+                    <br>
                     <select name="kecamatan_id" id="">
                         @foreach($kecamatan as $d)
-                        <option value="{{ $d->id }}">jebres</option>
+                        <option value="{{ $d->id }}">{{ $d->nama }}</option>
                         @endforeach
                     </select>
                     <br>
+                    <label for="title">Pekerjaan</label>
+                    <br>
+                    <select name="pekerjaan_id" id="">
+                        @foreach($pekerjaan as $d)
+                        <option value="{{ $d->id }}">{{ $d->nama }}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <label for="title">Koperasi</label>
+                    <br>
+                    <select name="koperasi_id" id="">
+                        @foreach($koperasi as $d)
+                        <option value="{{ $d->id }}">{{ $d->nama }}</option>
+                        @endforeach
+                    </select>
+                    <br>
+                    <br><br>
                     <div class="row">
                         <div class="col-1">
                             <button type="submit" class="btn btn-primary px-2">Submit</button>

@@ -8,8 +8,9 @@ use App\Http\Controllers\adminPekerjaanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\orderLanggananController;
+use App\Http\Controllers\peminjamanController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\riwayatReorder;
+use App\Http\Controllers\rekeningController;
 use App\Http\Controllers\riwayatReorderController;
 
 /*
@@ -29,8 +30,7 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'index']);
 
-// admin
-route::get('/admin-dashboard', [adminKoperasiController::class, 'index']);
+
 
 //login dan logout
 Route::get('/login', [LoginController::class, 'index']);
@@ -41,8 +41,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
-//admin pimpinan koperasi
-Route::get('/admin-dashboard/koperasi', [adminKoperasiController::class, 'index']);
+//admin
+Route::get('/admin-dashboard/koperasi', [adminKoperasiController::class, 'index'])->middleware('auth', 'auth.role:2');
 Route::get('/admin-dashboard/koperasi/create', [adminKoperasiController::class, 'create']);
 Route::post('/admin-dashboard/koperasi/store', [adminKoperasiController::class, 'store']);
 Route::get('/admin-dashboard/koperasi/edit/{id}', [adminKoperasiController::class, 'edit']);
@@ -73,10 +73,26 @@ Route::get('/admin-dashboard/riwayat-reorder/edit/{id}', [riwayatReorderControll
 Route::put('/admin-dashboard/riwayat-reorder/update/{id}', [riwayatReorderController::class, 'update']);
 Route::delete('/admin-dashboard/riwayat-reorder/delete/{id}', [riwayatReorderController::class, 'delete']);
 
-//admin pekerjaan
+//pekerjaan
 Route::get('/admin-dashboard/pekerjaan', [adminPekerjaanController::class, 'index']);
 Route::get('/admin-dashboard/pekerjaan/create', [adminPekerjaanController::class, 'create']);
 Route::post('/admin-dashboard/pekerjaan/store', [adminPekerjaanController::class, 'store']);
 Route::get('/admin-dashboard/pekerjaan/edit/{id}', [adminPekerjaanController::class, 'edit']);
 Route::put('/admin-dashboard/pekerjaan/update/{id}', [adminPekerjaanController::class, 'update']);
 Route::delete('/admin-dashboard/pekerjaan/delete/{id}', [adminPekerjaanController::class, 'delete']);
+
+// peminjaman
+Route::get('/admin-dashboard/peminjaman', [peminjamanController::class, 'index']);
+Route::get('/admin-dashboard/peminjaman/create', [peminjamanController::class, 'create']);
+Route::post('/admin-dashboard/peminjaman/store', [peminjamanController::class, 'store']);
+Route::get('/admin-dashboard/peminjaman/edit/{id}', [peminjamanController::class, 'edit']);
+Route::put('/admin-dashboard/peminjaman/update/{id}', [peminjamanController::class, 'update']);
+Route::delete('/admin-dashboard/peminjaman/delete/{id}', [peminjamanController::class, 'delete']);
+
+// rekening
+Route::get('/admin-dashboard/rekening', [rekeningController::class, 'index']);
+Route::get('/admin-dashboard/rekening/create', [rekeningController::class, 'create']);
+Route::post('/admin-dashboard/rekening/store', [rekeningController::class, 'store']);
+Route::get('/admin-dashboard/rekening/edit/{id}', [rekeningController::class, 'edit']);
+Route::put('/admin-dashboard/rekening/update/{id}', [rekeningController::class, 'update']);
+Route::delete('/admin-dashboard/rekening/delete/{id}', [rekeningController::class, 'delete']);

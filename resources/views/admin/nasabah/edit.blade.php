@@ -26,13 +26,29 @@
                 <div class="form-group">
                     <label for="title">Nama</label>
                     <input type="text" class="form-control" name="nama" value="{{ old('nama', $nasabah->nama) }}">
+                    <label for="title">Nomor Telepon</label>
+                    <input type="text" class="form-control" name="no_telp"
+                        value="{{ old('no_telp', $nasabah->no_telp) }}">
                     <label for="title">Alamat</label>
                     <input type="text" class="form-control" name="alamat"
                         value="{{ old('alamat', $nasabah->alamat) }}">
-                        <label for="title">Nomor Telepon</label>
-                    <input type="text" class="form-control" name="no_telp"
-                        value="{{ old('no_telp', $nasabah->no_telp) }}">
-                    
+                    <label for="title">Kecamatan</label>
+                    <br>
+                    <select name="kecamatan_id" id="">
+                        <option value="{{ old('kecamatan_id', $nasabah->kecamatan_id) }}">{{ old('kecamatan_id', $nasabah->kecamatan_id) }}</option>
+                    </select>
+                    <br>
+                    <label for="title">Pekerjaan</label>
+                    <br>
+                    <select name="pekerjaan_id" id="">
+                        <option value="{{ old('pekerjaan_id', $nasabah->pekerjaan_id) }}">{{ old('pekerjaan_id', $nasabah->pekerjaan_id) }}</option>
+                    </select>
+                    <br>
+                    <label for="title">Koperasi</label>
+                    <br>
+                    <select name="koperasi_id" id="">
+                        <option value="{{ old('koperasi_id', $nasabah->koperasi_id) }}">{{ old('koperasi_id', $nasabah->koperasi_id) }}</option>
+                    </select>
                     <br>
                     <div class="row">
                         <div class="col-1">

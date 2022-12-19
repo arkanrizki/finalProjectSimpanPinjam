@@ -35,13 +35,16 @@ class adminNasabahController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin.nasabah.create');
+        // return view('admin.nasabah.create');
 
-        // $pekerjaan = DB::table('pekerjaan')
-        //     ->get();
-        // $kecamatan = DB::table('kecamatan')
-        //     ->get();
-        // return view('admin.nasabah.create', ['pekerjaan' => $pekerjaan, 'kecamatan' => $kecamatan]);
+        $pekerjaan = DB::table('pekerjaan')
+            ->get();
+        $kecamatan = DB::table('kecamatan')
+            ->get();
+        $koperasi = DB::table('koperasi')
+        ->get();
+        
+        return view('admin.nasabah.create', ['pekerjaan' => $pekerjaan, 'kecamatan' => $kecamatan,  'koperasi' => $koperasi]);
     }
 
     /**
@@ -52,12 +55,23 @@ class adminNasabahController extends Controller
      */
     public function store(Request $request)
     {
+        $koperasi = DB::table('koperasi')
+            ->where('id', '=', $request->koperasi_id)
+            ->get();
+
+        // dd($koperasi);
+
         $nasabah = DB::table('nasabah')->insert([
             'nama' => $request->nama,
+            'user_id' => Auth::user()->id,
             'alamat' => $request->alamat,
             'no_telp' => $request->no_telp,
-            
+            'pekerjaan_id' => $request->pekerjaan_id,
+            'kecamatan_id' => $request->kecamatan_id,
+            'koperasi_id' => $koperasi[0]->id
+        
         ]);
+        // dd($nasabah);
         if ($nasabah) {
             return redirect('admin-dashboard/nasabah')
                 ->with([
@@ -97,9 +111,14 @@ class adminNasabahController extends Controller
         $nasabah = nasabah::findOrFail($id);
         $nasabah->update([
             'nama' => $request->nama,
+            'user_id' => Auth::user()->id,
             'alamat' => $request->alamat,
             'no_telp' => $request->no_telp,
+            'pekerjaan_id' => $request->pekerjaan_id,
+            'kecamatan_id' => $request->kecamatan_id,
+            'koperasi_id' => $request->koperasi_id
         ]);
+
         if ($nasabah) {
             return redirect('admin-dashboard/nasabah')
                 ->with([

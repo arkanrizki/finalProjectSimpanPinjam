@@ -34,7 +34,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ url('/admin-dashboard/order-langganan') }}">
+            <a class="nav-link collapsed" href="{{ url('/admin-dashboard/pekerjaan') }}">
                 <i class="bi bi-grid"></i>
                 <span>Pekerjaan</span>
             </a>

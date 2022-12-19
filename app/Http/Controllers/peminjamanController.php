@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class peminjamanController extends Controller
 {
@@ -13,7 +16,16 @@ class peminjamanController extends Controller
      */
     public function index()
     {
-        //
+        $peminjaman = DB::table('peminjaman')
+            ->get();
+        // dd($koperasi[1]->id);
+        // dd($koperasi);
+        return view(
+            'admin.peminjaman.index',
+            [
+                'peminjaman' => $peminjaman
+            ]
+        );
     }
 
     /**
@@ -23,7 +35,9 @@ class peminjamanController extends Controller
      */
     public function create()
     {
-        //
+        $rekening_id = DB::table('rekening')
+            ->get();
+        return view('admin.peminjaman.create', ['rekening' => $rekening_id]);
     }
 
     /**
@@ -34,7 +48,37 @@ class peminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rekening = DB::table('rekening')
+            ->where('id', '=', $request->rekening_id)
+            ->get();
+
+        // dd($rekening);
+
+        $peminjaman = DB::table('peminjaman')->insert([
+            'rekening_id' => $rekening[0]->id,
+            'jml_pinjam' => $request->jml_pinjam,
+            'debet' => $request->debet,
+            'kredit' => $request->kredit,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+            'created_by' => Auth::user()->username,
+            'updated_by' => Auth::user()->username
+        
+        ]);
+        // dd($nasabah);
+        if ($peminjaman) {
+            return redirect('admin-dashboard/peminjaman')
+                ->with([
+                    'success' => 'Nasabah has been added successfully'
+                ]);
+        } else {
+            return redirect('admin-dashboard/peminjaman')
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
+        }
     }
 
     /**
@@ -45,7 +89,7 @@ class peminjamanController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -56,7 +100,8 @@ class peminjamanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $peminjaman = peminjaman::findOrFail($id);
+        return view('admin.peminjaman.edit', compact('peminjaman'));
     }
 
     /**
@@ -68,7 +113,35 @@ class peminjamanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $peminjaman = peminjaman::findOrFail($id);
+
+        // dd($rekening);
+        $peminjaman->update([
+            'rekening_id' => $request->rekening_id,
+            'no_rekening' => $request->no_rekening,
+            'jml_pinjam' => $request->jml_pinjam,
+            'debet' => $request->debet,
+            'kredit' => $request->kredit,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+            'created_by' => Auth::user()->username,
+            'updated_by' => Auth::user()->username
+        
+        ]);
+
+        if ($peminjaman) {
+            return redirect('admin-dashboard/rekening')
+                ->with([
+                    'success' => 'Rekening has been added successfully'
+                ]);
+        } else {
+            return redirect('admin-dashboard/rekening')
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem has occured, please try again'
+                ]);
+        }
     }
 
     /**
@@ -77,8 +150,22 @@ class peminjamanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request, $id)
     {
-        //
+        $peminjaman = DB::table('peminjaman')
+            ->where('id', '=', $request->id)
+            ->delete();
+
+        if ($peminjaman) {
+            return redirect('admin-dashboard/peminjaman')
+                ->with([
+                    'success' => 'Peminjaman has been deleted successfully'
+                ]);
+        } else {
+            return redirect('admin-dashboard/peminjaman')
+                ->with([
+                    'error' => 'Some problem has occurred, please try again'
+                ]);
+        }
     }
 }
