@@ -10,9 +10,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ url('/admin-dashboard/user') }}">
+            <a class="nav-link collapsed" href="{{ url('/admin-dashboard/profil-user') }}">
                 <i class="bi bi-grid"></i>
-                <span>User</span>
+                <span>Profil User</span>
             </a>
         </li>
         <li class="nav-item">

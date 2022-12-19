@@ -130,12 +130,12 @@ class peminjamanController extends Controller
         ]);
 
         if ($peminjaman) {
-            return redirect('admin-dashboard/rekening')
+            return redirect('admin-dashboard/peminjaman')
                 ->with([
-                    'success' => 'Rekening has been added successfully'
+                    'success' => 'Peminjaman has been added successfully'
                 ]);
         } else {
-            return redirect('admin-dashboard/rekening')
+            return redirect('admin-dashboard/peminjaman')
                 ->back()
                 ->withInput()
                 ->with([

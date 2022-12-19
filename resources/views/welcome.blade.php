@@ -52,7 +52,7 @@
                                 <p class="flex justify-center" style="color: gray">&nbsp</p>
                             @endauth
                         </div>
-                    @endif
+                    @endif                 
                 </div>
             </div>
         </div>

@@ -46,4 +46,9 @@ class User extends Authenticatable
     public function nasabah(){
         return $this->hasMany(nasabah::class);
     }
+
+    public function role()
+    {
+        return $this->belongsTo(role::class);
+    }
 }

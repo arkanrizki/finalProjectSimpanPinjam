@@ -30,13 +30,27 @@
                         @endforeach
                     </select>
                     <br>
-                    
                     <label for="title">Jumlah Pinjam</label><br>
                     <select name="jml_pinjam" id="">
                             <option>Rp 1.000.000</option>
                             <option>Rp 2.000.000</option>
                             <option>Rp 3.000.000</option>
                     </select>
+                    <br>
+                    <label for="title">Debit</label><br>
+                    <select name="debit" id="">
+                            <option>Rp 1.000.000</option>
+                            <option>Rp 2.000.000</option>
+                            <option>Rp 3.000.000</option>
+                    </select>
+                    <br>
+                    <label for="title">Kredit</label><br>
+                    <select name="kredit" id="">
+                            <option>Rp 1.000.000</option>
+                            <option>Rp 2.000.000</option>
+                            <option>Rp 3.000.000</option>
+                    </select>
+                    
                     <br><br>
                     
                     <div class="row">

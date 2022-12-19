@@ -25,29 +25,21 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="title">Rekening ID</label><br>
-                    <input type="hidden" name="rekening_id" value="{{ old('id', $rekening->rekening_id) }}">
+                    <input type="hidden" name="rekening_id" value="{{ old('rekening_id', $peminjaman->rekening_id) }}">
                     <select name="id" id="">
-                        <option value="{{ old('id', $rekening->id) }}">{{ old('id', $rekening->id) }}</option>
+                        <option value="{{ old('rekening_id', $peminjaman->rekening_id) }}">{{ old('rekening_id', $peminjaman->rekening_id) }}</option>
                     </select>
                     <br>
-                    <label for="title">Nama Nasabah</label><br>
-                    <input type="hidden" name="nama" value="{{ old('nama', $rekening->nama) }}">
-                    <select name="nasabahOld_nama" id="">
-                        @foreach($nasabah as $n)
-                            <option value="{{ $n->nama }}">{{ $n->nama }}</option>
-                        @endforeach
+                    <label for="title">Jumlah Pinjam</label>
+                    <br>
+                    <select name="jml_pinjam" id="">
+                        <option value="{{ old('jml_pinjam', $peminjaman->jml_pinjam) }}">{{ old('jml_pinjam', $peminjaman->jml_pinjam) }}</option>
+                        <option>Rp 1.000.000</option>
+                        <option>Rp 2.000.000</option>
+                        <option>Rp 3.000.000</option>
                     </select>
                     <br>
-                    <label for="title">No Rekening</label>
-                    <input type="hidden" name="no_rekening" value="{{ $rekening[0]->no_rekening }}">
-                    <select name="nasabahOld_no_rekening" id="">
-                        @foreach($rekening as $n)
-                            <option value="{{ old('no_rekening', $rekening->no_rekening) }}">{{ $n->no_rekening }}</option>
-                        @endforeach
-                    </select>
-                    <br>
-                    <input type="text" class="form-control" name="no_rekening">
-                    <br>
+                    
                     
                     <div class="row">
                         <div class="col-1">
