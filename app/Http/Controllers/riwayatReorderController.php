@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 
+use function PHPUnit\Framework\callback;
+
 function payment()
 {
     // Set your Merchant Server Key
@@ -27,9 +29,33 @@ function payment()
         ->get();
     // dd($koperasi);
 
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.sandbox.midtrans.com/v2/1/status",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_POSTFIELDS => "\n\n",
+        CURLOPT_HTTPHEADER => array(
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "Authorization: U0ItTWlkLXNlcnZlci1hS0hlaUMyZDFMckJVM1BIdHVFZVRxRVQ="
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $response = json_decode($response, true);
+    curl_close($curl);
+    // dd($response);
+
     $params = array(
         'transaction_details' => array(
-            'order_id' => $koperasi[0]->id,
+            'order_id' => rand(),
             'gross_amount' => 50000,
         ),
         'customer_details' => array(
@@ -47,6 +73,9 @@ function payment()
                 'postal_code' => '12190',
                 'country_code' => 'IDN'
             ),
+        ),
+        'callbacks' => array(
+            'finish' => 'http://localhost:8000/admin-dashboard/riwayat-reorder/create',
         ),
     );
     // dd($params);

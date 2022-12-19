@@ -49,7 +49,7 @@
                         @foreach ($order as $o)
                             <tr>
                                 <th scope="row">{{ $o->id }}</th>
-                                <td>{{ $o->id }}</td>
+                                <td>{{ $o->user_id }}</td>
                                 <td>{{ $o->nama_koperasi }}</td>
                                 <td>{{ $o->alamat }}</td>
                                 <td>{{ $o->npwp }}</td>

@@ -37,19 +37,42 @@
                         <option>Batal</option>
                     </select>
                     <br><br>
+                    <div class="col-1">
+                        <button id="pay-button" type="button">Pay!</button>
+                    </div>
+                    <br>
 
                     <div class="row">
                         <div class="col-1">
-                            <button type="submit" class="btn btn-primary px-2">Submit</button>
-                            <button id="pay-button" type="button">Pay!</button>
+                            <button id="submit-button" type="submit" class="btn btn-primary px-2" disabled>Submit</button>
                             <script type="text/javascript">
                                 // For example trigger on button clicked, or any time you need
                                 var payButton = document.getElementById('pay-button');
                                 console.log('{{ $snap_token }}');
                                 payButton.addEventListener('click', function() {
                                     // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-                                    window.snap.pay('{{ $snap_token }}');
-                                    // customer will be redirected after completing payment pop-up
+                                    window.snap.pay('{{ $snap_token }}',
+                                        // {
+                                        //     onSuccess: function() {
+                                        //         /* You may add your own implementation here */
+                                        //         window.location.href =
+                                        //             'http://localhost:8000/admin-dashboard/riwayat-reorder/create';
+                                        //     },
+                                        //     onpending: function() {
+                                        //         /* You may add your own implementation here */
+                                        //         return redirect() - > route('admin-dashboard/riwayat-reorder/create');
+                                        //     },
+                                        //     onClose: function() {
+                                        //         /* You may add your own implementation here */
+                                        //         window.location.href =
+                                        //             'http://localhost:8000/admin-dashboard/riwayat-reorder/create';
+                                        //     },
+                                        //     // customer will be redirected after completing payment pop-up
+                                        // }
+                                    );
+                                });
+                                document.getElementById('pay-button').addEventListener('click', function() {
+                                    document.getElementById('submit-button').disabled = false;
                                 });
                             </script>
                         </div>

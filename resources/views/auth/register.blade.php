@@ -88,7 +88,7 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            {{-- <input type="hidden" name="role" value="1"> --}}
                             <div class="form-group row mb-0 mt-3">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

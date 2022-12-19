@@ -6,6 +6,7 @@ use App\Models\peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class peminjamanController extends Controller
 {
@@ -52,6 +53,9 @@ class peminjamanController extends Controller
             ->where('id', '=', $request->rekening_id)
             ->get();
 
+
+        $now = Carbon::now();
+
         // dd($rekening);
 
         $peminjaman = DB::table('peminjaman')->insert([
@@ -59,11 +63,11 @@ class peminjamanController extends Controller
             'jml_pinjam' => $request->jml_pinjam,
             'debet' => $request->debet,
             'kredit' => $request->kredit,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at,
+            'created_at' => $now,
+            'updated_at' => '',
             'created_by' => Auth::user()->username,
             'updated_by' => Auth::user()->username
-        
+
         ]);
         // dd($nasabah);
         if ($peminjaman) {
@@ -89,7 +93,6 @@ class peminjamanController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
@@ -115,6 +118,8 @@ class peminjamanController extends Controller
     {
         $peminjaman = peminjaman::findOrFail($id);
 
+        $now = Carbon::now();
+
         // dd($rekening);
         $peminjaman->update([
             'rekening_id' => $request->rekening_id,
@@ -122,11 +127,11 @@ class peminjamanController extends Controller
             'jml_pinjam' => $request->jml_pinjam,
             'debet' => $request->debet,
             'kredit' => $request->kredit,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at,
+            'created_at' => '',
+            'updated_at' => $now,
             'created_by' => Auth::user()->username,
             'updated_by' => Auth::user()->username
-        
+
         ]);
 
         if ($peminjaman) {
