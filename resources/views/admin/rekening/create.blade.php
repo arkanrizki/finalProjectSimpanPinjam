@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.admin.header')
 
-    @include('layouts.admin.sidebar')
+    @include('layouts.nasabah.sidebar')
 
     <main id="main" class="main">
 

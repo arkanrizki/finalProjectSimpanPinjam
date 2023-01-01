@@ -64,12 +64,12 @@ class peminjamanController extends Controller
             'debet' => $request->debet,
             'kredit' => $request->kredit,
             'created_at' => $now,
-            'updated_at' => '',
+            'updated_at' => $request->updated_at,
             'created_by' => Auth::user()->username,
             'updated_by' => Auth::user()->username
 
         ]);
-        // dd($nasabah);
+        // dd($peminjaman);
         if ($peminjaman) {
             return redirect('admin-dashboard/peminjaman')
                 ->with([
@@ -127,7 +127,7 @@ class peminjamanController extends Controller
             'jml_pinjam' => $request->jml_pinjam,
             'debet' => $request->debet,
             'kredit' => $request->kredit,
-            'created_at' => '',
+            'created_at' => $now,
             'updated_at' => $now,
             'created_by' => Auth::user()->username,
             'updated_by' => Auth::user()->username

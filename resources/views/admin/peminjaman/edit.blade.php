@@ -39,7 +39,24 @@
                         <option>Rp 3.000.000</option>
                     </select>
                     <br>
-                    
+                    <label for="title">Debit</label>
+                    <br>
+                    <select name="debet" id="">
+                        <option value="{{ old('debet', $peminjaman->debet) }}">{{ old('debet', $peminjaman->debet) }}</option>
+                        <option>Rp 1.000.000</option>
+                        <option>Rp 2.000.000</option>
+                        <option>Rp 3.000.000</option>
+                    </select>
+                    <br>
+                    <label for="title">Kredit</label>
+                    <br>
+                    <select name="kredit" id="">
+                        <option value="{{ old('kredit', $peminjaman->kredit) }}">{{ old('kredit', $peminjaman->kredit) }}</option>
+                        <option>Rp 1.000.000</option>
+                        <option>Rp 2.000.000</option>
+                        <option>Rp 3.000.000</option>
+                    </select>
+                    <br><br>
                     
                     <div class="row">
                         <div class="col-1">

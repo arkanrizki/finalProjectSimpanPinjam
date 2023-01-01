@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.admin.header')
 
-    @include('layouts.admin.sidebar')
+    @include('layouts.nasabah.sidebar')
 
     <main id="main" class="main">
 
@@ -49,6 +49,7 @@
                     <select name="koperasi_id" id="">
                         <option value="{{ old('koperasi_id', $nasabah->koperasi_id) }}">{{ old('koperasi_id', $nasabah->koperasi_id) }}</option>
                     </select>
+                    <br>
                     <br>
                     <div class="row">
                         <div class="col-1">

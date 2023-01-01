@@ -9,6 +9,18 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ url('/admin-dashboard/nasabah') }}">
+                <i class="bi bi-grid"></i>
+                <span>Nasabah</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ url('/admin-dashboard/rekening') }}">
+                <i class="bi bi-grid"></i>
+                <span>Rekening</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="{{ url('/admin-dashboard/tabungan') }}">
                 <i class="bi bi-grid"></i>
                 <span>Tabungan</span>

@@ -38,7 +38,7 @@
                     </select>
                     <br>
                     <label for="title">Debit</label><br>
-                    <select name="debit" id="">
+                    <select name="debet" id="">
                             <option>Rp 1.000.000</option>
                             <option>Rp 2.000.000</option>
                             <option>Rp 3.000.000</option>

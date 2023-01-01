@@ -69,6 +69,7 @@ class orderLanggananController extends Controller
             'email' => $koperasi[0]->email,
             'status_approval' => $request->status_approval,
             'created_at' => $now,
+            'updated_at' => ''
         ]);
 
         if ($order) {
